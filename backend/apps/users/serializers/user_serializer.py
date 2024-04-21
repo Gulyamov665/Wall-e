@@ -37,7 +37,7 @@ class UserModelSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         code = random.randint(1000, 9999)
-        code_expiry = timezone.now() + timedelta(seconds=1)
+        code_expiry = timezone.now() + timedelta(minutes=15)
         user = UserModel.objects.create(
             email = validated_data["email"],
             phone = validated_data["phone"],
