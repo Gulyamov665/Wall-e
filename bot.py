@@ -1,7 +1,3 @@
-"""
-This is a echo bot.
-It echoes any incoming text messages.
-"""
 
 import logging
 
