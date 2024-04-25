@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-6x%gf7=+s+2+*h!$vrs=^-qudg#mb_u80p669lx*$77ur@y5fb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 PASSWORD_MIN_LENGHT = 8
 
@@ -47,8 +47,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # external librarys
     "rest_framework",
     "rest_framework_simplejwt",
+
+    # internal apps
     "users",
     "tasks",
     "core",
