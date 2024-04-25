@@ -112,6 +112,7 @@ __pycache__/
 local_settings.py
 
 .env
+/env
 db.sqlite3
 /media
 media/
