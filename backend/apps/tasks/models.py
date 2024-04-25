@@ -1,5 +1,6 @@
 from django.db import models
 from core.models import BaseModel
+from tasks.utils.directory_path import upload_path_task_images as upload_task
 
 
 class Classification(BaseModel):
@@ -62,5 +63,13 @@ class Task(BaseModel):
         return self.name
 
 
-class Image(BaseModel):
-    pass
+class TaskImages(BaseModel):
+    image = models.ImageField(upload_to=upload_task, null=True, blank=True)
+    task = models.ForeignKey(
+        "tasks.Task",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="task_images",
+    )
+    
