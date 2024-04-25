@@ -10,5 +10,4 @@ def send_verification_code(email, code):
     send_mail(subject, message, sender_email, recipient_list, html_message=message)
 
 
-# hgjkl;'
 
