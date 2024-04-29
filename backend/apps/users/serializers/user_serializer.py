@@ -49,4 +49,3 @@ class UserModelSerializer(serializers.ModelSerializer):
         user.save()
         send_verification_code(validated_data["email"], code)
         return user
-    

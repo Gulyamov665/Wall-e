@@ -24,13 +24,15 @@ class UserManager(BaseUserManager):
         user.is_active = True
         user.is_staff = True
         user.is_superuser = True
+        user.is_manager = True
+        user.is_supervisor = True
         user.save(using=self._db)
         return user
     
 
 class UserModel(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(unique=True, max_length=100, validators=[validate_email])
-    phone = models.CharField(max_length=14, validators=[UZB_PHONE_VALIDATOR], null=True, blank=True)
+    phone = models.CharField(unique=True, max_length=14, validators=[UZB_PHONE_VALIDATOR], null=True, blank=True)
     code = models.CharField(max_length=4)
     code_expiry = models.DateTimeField(blank=True, null=True)
     max_code_try = models.CharField(max_length=2, default=settings.MAX_CODE_TRY)
@@ -46,7 +48,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-    
+
 
 class UserProfile(models.Model):
 

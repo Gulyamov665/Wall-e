@@ -8,6 +8,3 @@ def send_verification_code(email, code):
     sender_email = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, sender_email, recipient_list, html_message=message)
-
-
-
