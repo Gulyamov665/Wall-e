@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from tasks.models import Task, TaskImages
+from tasks.utils.images_create import images_create
+from rest_framework.response import Response
 
 
 class TaskImagesSerializer(serializers.ModelSerializer):
@@ -37,33 +39,7 @@ class TaskSerializer(serializers.ModelSerializer):
         uploaded_images = validated_data.pop("uploaded_images", None)
         observers = validated_data.pop("observers")
         task = Task.objects.create(**validated_data)
-        if uploaded_images:
-            for image in uploaded_images:
-                TaskImages.objects.create(task=task, image=image)
+        images_create(uploaded_images, task, TaskImages)
         if observers:
             task.observers.set(observers)
-        return task
-    
-    def update(self, instance, validated_data):
-        instance.name = validated_data.get('name', instance.name)
-        instance.start_time = validated_data.get('start_time', instance.start_time)
-        instance.dead_line = validated_data.get('dead_line', instance.dead_line)
-        instance.status = validated_data.get('status', instance.status)
-        instance.executor = validated_data.get('executor', instance.executor)
-        instance.comments = validated_data.get('comments', instance.comments)
-        instance.priority = validated_data.get('priority', instance.priority)
-        instance.classification = validated_data.get('classification', instance.classification)
-        observers = validated_data.get('observers')
-        instance.observers.add(*observers)
-
-        uploaded_images = validated_data.pop("uploaded_images", None)
-        if uploaded_images:
-            for image in uploaded_images:
-                task = TaskImages.objects.filter(task=instance.id).update(image=image)
-
-                print("%%%%%%%%%%%")
-                print(task)
-                print("%%%%%%%%%%%")
-
-        instance.save()
-        return instance
+        return "Картинки успешно загружены"
