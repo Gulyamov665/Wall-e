@@ -31,6 +31,29 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+
+CORS_ALLOW_HEADERS = [
+    "access-control-allow-origin",
+    "authorization",
+    "content-type",
+]
+
+
 PASSWORD_MIN_LENGHT = 8
 
 MAX_CODE_TRY = 6
@@ -58,11 +81,13 @@ INSTALLED_APPS = [
     "users",
     "tasks",
     "core",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
