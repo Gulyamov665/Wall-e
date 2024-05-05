@@ -1,7 +1,8 @@
 from auditlog.models import LogEntry
 from rest_framework import serializers
-from tasks.models import Task, TaskImages
+from tasks.models import Task, TaskImages, TaskComments
 from tasks.utils.images_create import images_create
+from tasks.serializers.comment_serializer import TaskCommentsSerializer
 from rest_framework.response import Response
 
 class LogEntrySerializer(serializers.ModelSerializer):
@@ -50,3 +51,10 @@ class TaskSerializer(serializers.ModelSerializer):
         if observers:
             task.observers.set(observers)
         return task
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        comment = TaskComments.objects.filter(task_id=instance.id)
+        representation["task_comment"] = TaskCommentsSerializer(comment, many=True).data
+        return representation

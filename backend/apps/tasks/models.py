@@ -74,4 +74,27 @@ class TaskImages(BaseModel):
         blank=True,
         related_name="task_images",
     )
-    
+
+class TaskComments(BaseModel):
+    task = models.ForeignKey(
+        "tasks.Task",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="task_comments",
+    )
+    comment = models.TextField()
+
+    def __str__(self):
+        return f"{self.task.name} | {self.comment}"
+
+
+class CommentImages(BaseModel):
+    task = models.ForeignKey(
+        "tasks.TaskComments",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="comment_image",
+    )
+    image = models.FileField(upload_to="comment_photo/")
