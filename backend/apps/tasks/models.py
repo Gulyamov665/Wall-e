@@ -83,7 +83,7 @@ class TaskComments(BaseModel):
         blank=True,
         related_name="task_comments",
     )
-    comment = models.TextField()
+    comment = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.task.name} | {self.comment}"
@@ -97,4 +97,4 @@ class CommentImages(BaseModel):
         blank=True,
         related_name="comment_image",
     )
-    image = models.FileField(upload_to="comment_photo/")
+    image = models.FileField(upload_to="comment_photo/", null=True, blank=True)
