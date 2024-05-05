@@ -11,7 +11,7 @@ export default function SideBar() {
     <div>
       <aside className={styles.sidebar}>
         {items.map((elem) => (
-          <ul>{elem.name}</ul>
+          <ul key={elem.name}>{elem.name}</ul>
         ))}
       </aside>
     </div>
