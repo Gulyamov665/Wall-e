@@ -1,8 +1,8 @@
-from rest_framework.response import Response
-
-
 def images_create(images, task, model):
+    data_list = []
     if images:
         for image in images:
-            model.objects.create(task=task, image=image)
-        return Response({"message": "Картинки успешно загружены"})
+            data = model.objects.create(task=task, image=image)
+            data_list.append(data)
+    return data_list
+

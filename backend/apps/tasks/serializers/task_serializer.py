@@ -1,7 +1,13 @@
+from auditlog.models import LogEntry
 from rest_framework import serializers
 from tasks.models import Task, TaskImages
 from tasks.utils.images_create import images_create
 from rest_framework.response import Response
+
+class LogEntrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LogEntry
+        fields = ["id", "object_id", "timestamp","changes"]
 
 
 class TaskImagesSerializer(serializers.ModelSerializer):
@@ -22,6 +28,7 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             "id",
+            "created_at",
             "name",
             "start_time",
             "dead_line",
@@ -42,4 +49,4 @@ class TaskSerializer(serializers.ModelSerializer):
         images_create(uploaded_images, task, TaskImages)
         if observers:
             task.observers.set(observers)
-        return "Картинки успешно загружены"
+        return task

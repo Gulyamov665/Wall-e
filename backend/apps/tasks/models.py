@@ -1,3 +1,4 @@
+from auditlog.registry import auditlog
 from django.db import models
 from core.models import BaseModel
 from tasks.utils.directory_path import upload_path_task_images as upload_task
@@ -39,9 +40,9 @@ class Task(BaseModel):
         (LOW, "низкий"),
     )
 
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
     start_time = models.DateTimeField(blank=True, null=True)
-    dead_line = models.DateTimeField()
+    dead_line = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=255, default=PENDING, choices=STATUS_TYPE)
     executor = models.ForeignKey(
         "users.UserModel",
@@ -53,7 +54,7 @@ class Task(BaseModel):
     observers = models.ManyToManyField(
         "users.UserModel", blank=True, related_name="observers"
     )
-    comments = models.TextField()
+    comments = models.TextField(null=True, blank=True,)
     priority = models.CharField(max_length=255, default=AVERAGE, choices=PRIORITY_TYPE)
     classification = models.ForeignKey(
         "tasks.Classification", null=True, blank=True, on_delete=models.CASCADE
@@ -62,6 +63,7 @@ class Task(BaseModel):
     def __str__(self):
         return self.name
 
+auditlog.register(Task)
 
 class TaskImages(BaseModel):
     image = models.ImageField(upload_to=upload_task, null=True, blank=True)
