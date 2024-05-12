@@ -27,25 +27,6 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 .header {
   width: 100%;
   height: 80px;
@@ -54,7 +35,50 @@ button:focus-visible {
 }
 
 .layoutChildren {
-  text-align: center;
+  /* text-align: center; */
+}
+
+.custom {
+  background-color: #242424;
+  border-color: black;
+  transition: background-color 1s ease-in;
+
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    border-color: #646cff;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+.p-multiselect-panel {
+  background-color: #213547;
+}
+.p-multiselect-item {
+  background-color: #213547;
+}
+
+.p-multiselect-label-container {
+  background-color: black;
+}
+
+.select {
+  background-color: #213547;
+  color: black;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 @media (prefers-color-scheme: light) {

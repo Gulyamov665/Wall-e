@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { tasksApi } from "./taskApi"
+import { tasksApi } from "./request/taskApi"
 
 
 export default configureStore({
