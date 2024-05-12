@@ -4,6 +4,33 @@ from core.models import BaseModel
 from tasks.utils.directory_path import upload_path_task_images as upload_task
 
 
+COMPLETED = "completed"
+IN_PROCCESS = "in_proccess"
+DEFERRED = "deferred"
+PENDING = "pending"
+REQUIRES_INFO = "requires_info"
+
+STATUS_TYPE = (
+    (COMPLETED, "завершено"),
+    (IN_PROCCESS, "в процессе"),
+    (DEFERRED, "отложен"),
+    (PENDING, "в ожидании"),
+    (REQUIRES_INFO, "требуется информация"),
+    )
+
+HIGH = "high"
+AVERAGE = "average"
+LOW = "low"
+CRITICAL = "critical"
+
+PRIORITY_TYPE = (
+    (CRITICAL, "критичный"),
+    (HIGH, "высокий"),
+    (AVERAGE, "средний"),
+    (LOW, "низкий"),
+    )
+
+
 class Classification(BaseModel):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
@@ -14,32 +41,6 @@ class Classification(BaseModel):
 
 
 class Task(BaseModel):
-    COMPLETED = "completed"
-    IN_PROCCESS = "in_proccess"
-    DEFERRED = "deferred"
-    PENDING = "pending"
-    REQUIRES_INFO = "requires_info"
-
-    STATUS_TYPE = (
-        (COMPLETED, "завершено"),
-        (IN_PROCCESS, "в процессе"),
-        (DEFERRED, "отложен"),
-        (PENDING, "в ожидании"),
-        (REQUIRES_INFO, "требуется информация"),
-    )
-
-    HIGH = "high"
-    AVERAGE = "average"
-    LOW = "low"
-    CRITICAL = "critical"
-
-    PRIORITY_TYPE = (
-        (CRITICAL, "критичный"),
-        (HIGH, "высокий"),
-        (AVERAGE, "средний"),
-        (LOW, "низкий"),
-    )
-
     name = models.CharField(max_length=255, blank=True, null=True)
     start_time = models.DateTimeField(blank=True, null=True)
     dead_line = models.DateTimeField(blank=True, null=True)

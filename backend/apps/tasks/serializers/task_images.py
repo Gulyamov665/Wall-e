@@ -40,3 +40,4 @@ class TaskImagesSerializer(serializers.ModelSerializer):
         return [{"id": obj.id, "image": obj.image.url}]
 
     
+

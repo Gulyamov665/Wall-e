@@ -46,6 +46,9 @@ class UserModelSerializer(serializers.ModelSerializer):
             max_code_try = settings.MAX_CODE_TRY,
         )
         user.set_password(validated_data["password1"])
+        user.is_active = True
+        user.is_staff = True
         user.save()
-        send_verification_code(validated_data["email"], code)
+        # enable if user verification with OTP code
+        # send_verification_code(validated_data["email"], code)
         return user
