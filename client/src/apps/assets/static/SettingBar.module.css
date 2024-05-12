@@ -5,5 +5,5 @@
   width: 20%;
   background-color: #242424;
   text-align: center;
+  transition: background-color 1s ease-in;
 }
-

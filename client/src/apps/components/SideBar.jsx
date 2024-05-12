@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from '../assets/static/Sidebar.module.css'
+import { Link } from 'react-router-dom'
 
 export default function SideBar() {
   const items = [
-    { name: 'Создать Очередь' },
+    { name: 'Создать Очередь', link: '/create-task' },
     { name: 'Создать задачу' },
     { name: 'Просмотреть активные задачи' },
   ]
@@ -11,7 +12,9 @@ export default function SideBar() {
     <div>
       <aside className={styles.sidebar}>
         {items.map((elem) => (
-          <ul key={elem.name}>{elem.name}</ul>
+          <Link key={elem.name} to={elem.link}>
+            <ul>{elem.name}</ul>
+          </Link>
         ))}
       </aside>
     </div>
