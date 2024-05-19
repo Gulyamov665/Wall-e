@@ -3,7 +3,7 @@ import { Toolbar } from 'primereact/toolbar'
 import { Avatar } from 'primereact/avatar'
 import { Link } from 'react-router-dom'
 
-export default function Header() {
+function Header() {
   const startContent = <React.Fragment></React.Fragment>
 
   const centerContent = (
@@ -45,3 +45,5 @@ export default function Header() {
     // </div>
   )
 }
+
+export { Header }

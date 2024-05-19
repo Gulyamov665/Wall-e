@@ -1,12 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../assets/static/SettingBar.module.css'
-import MultiSelectCustom from './MultiSelect'
 
-export default function SettingsBar({ data }) {
-  return (
-    <div className={styles.sidebar}>
-      SettingsBar
-      <MultiSelectCustom data={data} />
-    </div>
-  )
+export default function SettingsBar({ children }) {
+  return <div className={styles.sidebar}>{children}</div>
 }

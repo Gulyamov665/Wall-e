@@ -14,6 +14,11 @@ export const tasksApi = createApi({
             providesTags: ['Tasks']
         }),
 
+        getTasksStatus: build.query({
+            query: () => 'status/',
+            providesTags: ['Tasks']
+        }),
+
         getFilteredTasks: build.query({
             query: ({ classification = '', status = '', start_time_after, start_time_before, executor }) => `tasks/?classification=${classification}&status=${status}&start_time_after=${start_time_after}&start_time_before=${start_time_before}&executor=${executor}`,
             providesTags: ['Tasks']
@@ -50,6 +55,7 @@ export const tasksApi = createApi({
 
 export const {
     useGetTasksQuery,
+    useGetTasksStatusQuery,
     useLazyGetFilteredTasksQuery,
     useAddTaskMutation,
     useUpdateTaskMutation,

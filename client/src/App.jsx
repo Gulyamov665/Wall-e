@@ -5,10 +5,13 @@ import Main from './apps/layouts/Main'
 import ContentPage from './apps/pages/ContentPage'
 import store from './store'
 import 'primereact/resources/themes/lara-light-cyan/theme.css'
-import 'primereact/resources/primereact.min.css' //core css
-import 'primeicons/primeicons.css' //icons
-import 'primeflex/primeflex.css' // flex
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css'
 import CreateTask from './apps/pages/CreateTask'
+import { ClassificationPage } from './apps/pages/ClassificationPage'
+import { Tasks } from './apps/pages/Tasks'
+import { TaskDetail } from './apps/pages/TaskDetail'
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
             <Route path="/" element={<Main />} exact />
             <Route path="/content" element={<ContentPage />} />
             <Route path="/create-task" element={<CreateTask />} />
+            <Route path="/classification" element={<ClassificationPage />} />
+            <Route path="/tasks" element={<Tasks />} />
+            <Route path="task/:id" element={<TaskDetail />} />
           </Routes>
         </PrimeReactProvider>
       </Provider>
