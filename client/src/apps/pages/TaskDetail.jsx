@@ -2,18 +2,20 @@ import React from 'react'
 import Main from '../layouts/Main'
 import SettingsBar from '../layouts/SettingsBar'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useGetTaskByIdQuery } from '../../store/request/taskApi'
+import { useGetTasksQuery } from '../../store/request/taskApi'
 import { format } from 'date-fns'
+import { useForm } from 'react-hook-form'
 
 function TaskDetail() {
   const params = useParams()
+  const { data = [] } = useGetTasksQuery(params.id)
+  const { register, handleSubmit } = useForm()
   const navigate = useNavigate()
-  const { data = [] } = useGetTaskByIdQuery(params.id)
 
-  console.log(data)
   return (
-    <Main>
-      <button className="btn" onClick={() => navigate(-1)}>
+    <Main className="text-start">
+      <div></div>
+      <button className="btn " onClick={() => navigate(-1)}>
         Back
       </button>
       <SettingsBar>
@@ -27,6 +29,18 @@ function TaskDetail() {
         </p>
       </SettingsBar>
       <p>Название : {data.name}</p>
+
+      {data &&
+        data.task_images?.map((image) => (
+          <img
+            width={200}
+            height={200}
+            key={image.id}
+            src={image.image}
+            alt={image.image}
+          />
+        ))}
+
       <p>Комментарий : {data.comments}</p>
       <p>
         {data.comment?.map((item) => (

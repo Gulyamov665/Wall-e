@@ -10,11 +10,7 @@ export const tasksApi = createApi({
     endpoints: (build) => ({
 
         getTasks: build.query({
-            query: () => `tasks/`,
-            providesTags: ['Tasks']
-        }),
-        getTaskById: build.query({
-            query: (id) => `tasks/${id}`,
+            query: (id) => id ? `tasks/${id}` : 'tasks/',
             providesTags: ['Tasks']
         }),
 
@@ -59,7 +55,6 @@ export const tasksApi = createApi({
 
 export const {
     useGetTasksQuery,
-    useGetTaskByIdQuery,
     useGetTasksStatusQuery,
     useLazyGetFilteredTasksQuery,
     useAddTaskMutation,
