@@ -4,8 +4,6 @@ from tasks.utils.images_create import images_create
 from rest_framework.response import Response
 
 
-
-
 class TaskImagesSerializer(serializers.ModelSerializer):
     uploaded_images = serializers.ListField(
         child=serializers.FileField(allow_empty_file=True, use_url=True),
@@ -33,7 +31,6 @@ class TaskImagesSerializer(serializers.ModelSerializer):
                 {"id": image.id, "image": image.image.url} for image in data
             ]
         }
-
         return response_data
     
     def get_images(self, obj):

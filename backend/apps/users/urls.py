@@ -3,7 +3,6 @@ from rest_framework.routers import DefaultRouter
 from users.views.user_views import UserView
 from users.views.user_profile import UserProfileView 
 
-
 router = DefaultRouter()
 
 router = DefaultRouter()

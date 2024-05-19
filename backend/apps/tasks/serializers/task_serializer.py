@@ -1,9 +1,11 @@
 from auditlog.models import LogEntry
 from rest_framework import serializers
+from rest_framework.response import Response
+from tasks.serializers.comment_serializer import TaskCommentsSerializer
+from users.serializers.user_profile import UserProfileSerializer
 from tasks.models import Task, TaskImages, TaskComments
 from tasks.utils.images_create import images_create
-from tasks.serializers.comment_serializer import TaskCommentsSerializer
-from rest_framework.response import Response
+
 
 class LogEntrySerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,6 +26,11 @@ class TaskSerializer(serializers.ModelSerializer):
         write_only=True,
         required=False,
     )
+    executor_profile = serializers.SerializerMethodField()
+    observers_profile = serializers.SerializerMethodField()
+    classification_name = serializers.SerializerMethodField()
+
+
 
     class Meta:
         model = Task
@@ -39,9 +46,13 @@ class TaskSerializer(serializers.ModelSerializer):
             "comments",
             "priority",
             "classification",
+            "classification_name",
             "task_images",
             "uploaded_images",
+            "executor_profile",
+            "observers_profile",
         ]
+
 
     def create(self, validated_data):
         uploaded_images = validated_data.pop("uploaded_images", None)
@@ -52,9 +63,28 @@ class TaskSerializer(serializers.ModelSerializer):
             task.observers.set(observers)
         return task
 
+
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-
         comment = TaskComments.objects.filter(task_id=instance.id)
         representation["task_comment"] = TaskCommentsSerializer(comment, many=True).data
         return representation
+    
+    def get_classification_name(self, obj):
+        return obj.classification.name if obj.classification else None
+
+    def get_executor_profile(self, instance):
+        if instance.executor and hasattr(instance.executor, 'profile'):
+            return UserProfileSerializer(instance.executor.profile).data
+        return None
+    
+    
+    def get_observers_profile(self, instance):
+        observers = instance.observers.all()
+        observers_profile = []
+        for observer in observers:
+            if observer and hasattr(observer, 'profile'):
+                observers_profile.append(UserProfileSerializer(observer.profile).data)
+            else:
+                return None
+        return observers_profile
