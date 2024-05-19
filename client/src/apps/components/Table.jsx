@@ -5,25 +5,15 @@ import { format } from 'date-fns'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'classification', headerName: 'Classification', width: 130 },
+  { field: 'classification_name', headerName: 'Classification', width: 200 },
   { field: 'name', headerName: 'name', width: 130 },
 
-  // {
-  //   field: 'fullName',
-  //   headerName: 'Full name',
-  //   description: 'This column has a value getter and is not sortable.',
-  //   sortable: false,
-  //   width: 160,
-  //   valueGetter: (value, row) =>
-  //     `${row.classification || ''} ${row.name || ''}`,
-  // },
   {
     field: 'created_at',
     headerName: 'Date Added',
     width: 180,
     type: 'dateTime',
     valueFormatter: (params) => {
-      console.log(params)
       const date = params ? new Date(params) : null
       return date ? format(date, 'yyyy-MM-dd HH') : 'Invalid Date'
     },
@@ -31,7 +21,7 @@ const columns = [
   {
     field: 'link',
     headerName: 'Link',
-    width: 150,
+    width: 100,
     renderCell: (params) => (
       <Link style={{ textDecoration: 'none' }} to={`/task/${params.row.id}`}>
         Изменить
@@ -40,7 +30,7 @@ const columns = [
   },
 ]
 
-export default function DataTable({ tasks }) {
+export default function DataTable({ tasks = [] }) {
   console.log(tasks)
   const [sortModel, setSortModel] = React.useState([
     { field: 'createdAt', sort: 'desc' },

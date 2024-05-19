@@ -10,7 +10,7 @@ function Tasks() {
     <Main>
       <SettingsBar>Hello</SettingsBar>
       <div className="container w-50">
-        <DataTable tasks={tasks} />
+        <DataTable tasks={tasks.results} />
       </div>
     </Main>
   )

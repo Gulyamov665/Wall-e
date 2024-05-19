@@ -14,7 +14,7 @@ class TaskView(ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     parser_classes = [parsers.JSONParser, parsers.FormParser, parsers.MultiPartParser]
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     pagination_class = CustomPagination
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = TaskFilter

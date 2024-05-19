@@ -13,6 +13,7 @@ import { ClassificationPage } from './apps/pages/ClassificationPage'
 import { Tasks } from './apps/pages/Tasks'
 import { TaskDetail } from './apps/pages/TaskDetail'
 
+
 function App() {
   return (
     <BrowserRouter>
