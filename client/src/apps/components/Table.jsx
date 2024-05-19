@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
+import { Link } from 'react-router-dom'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -20,12 +21,19 @@ const columns = [
     valueGetter: (value, row) =>
       `${row.classification || ''} ${row.name || ''}`,
   },
+  {
+    field: 'link',
+    headerName: 'Link',
+    width: 150,
+    renderCell: (params) => (
+      <Link style={{ textDecoration: 'none' }} to={`/task/${params.row.id}`}>
+        Изменить
+      </Link>
+    ),
+  },
 ]
 
 export default function DataTable({ tasks }) {
-  const handleRowClick = (params) => {
-    console.log(params.row.id)
-  }
   return (
     <div style={{ height: '98.6dvh', width: '100%', backgroundColor: 'white' }}>
       <DataGrid
@@ -38,7 +46,6 @@ export default function DataTable({ tasks }) {
         }}
         pageSizeOptions={[13, 20, 30]}
         // checkboxSelection
-        onRowClick={(params) => console.log(params.row.id)}
       />
     </div>
   )

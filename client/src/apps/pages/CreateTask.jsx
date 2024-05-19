@@ -7,7 +7,7 @@ import {
 } from '../../store/request/taskApi'
 import { useGetUsersQuery } from '../../store/request/usersApi'
 import { useForm } from 'react-hook-form'
-import SettingsBar from '../components/SettingsBar'
+import SettingsBar from '../layouts/SettingsBar'
 import { TaskExtraOptions } from '../components/TaskExtraOptions'
 
 export default function CreateTask() {

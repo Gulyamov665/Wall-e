@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from '../assets/static/SettingBar.module.css'
 
 export default function SettingsBar({ children }) {
