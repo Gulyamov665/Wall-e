@@ -5,10 +5,17 @@
   width: 20%;
   background-color: #242424;
   text-align: center;
-}
 
-ul {
-  padding: 0;
-  cursor: pointer;
-  user-select: none;
+  .sidebar_link {
+    text-decoration: none;
+  }
+
+  p {
+    margin-top: 10px;
+    padding: 1px;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: white;
+  }
 }

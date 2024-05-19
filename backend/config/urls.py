@@ -3,8 +3,8 @@ from django.urls import path, include
 from apps.users.views import change_password
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from apps.tasks.views.task import LogEntryView, get_status_and_priority
-
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [

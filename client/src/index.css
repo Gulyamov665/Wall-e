@@ -5,12 +5,16 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #242424; */
+  background-color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: black;
 }
 
 a {
@@ -35,13 +39,16 @@ h1 {
 }
 
 .layoutChildren {
-  /* text-align: center; */
+  text-align: center;
+  color: #ffffff;
+  background-color: black;
 }
 
 .custom {
   background-color: #242424;
   border-color: black;
   transition: background-color 1s ease-in;
+  border-radius: 0;
 
   button {
     border-radius: 8px;
@@ -81,10 +88,10 @@ h1 {
   max-width: 100%;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
   }
   a:hover {
     color: #747bff;
@@ -93,3 +100,9 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+
+
+/* 
+.container-form{
+  width: 50px;
+} */

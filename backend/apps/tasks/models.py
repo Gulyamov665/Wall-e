@@ -16,7 +16,7 @@ STATUS_TYPE = (
     (DEFERRED, "отложен"),
     (PENDING, "в ожидании"),
     (REQUIRES_INFO, "требуется информация"),
-    )
+)
 
 HIGH = "high"
 AVERAGE = "average"
@@ -28,12 +28,11 @@ PRIORITY_TYPE = (
     (HIGH, "высокий"),
     (AVERAGE, "средний"),
     (LOW, "низкий"),
-    )
+)
 
 
 class Classification(BaseModel):
     name = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(unique=True)
     availability = models.BooleanField(default=True)
 
     def __str__(self):
@@ -55,7 +54,10 @@ class Task(BaseModel):
     observers = models.ManyToManyField(
         "users.UserModel", blank=True, related_name="observers"
     )
-    comments = models.TextField(null=True, blank=True,)
+    comments = models.TextField(
+        null=True,
+        blank=True,
+    )
     priority = models.CharField(max_length=255, default=AVERAGE, choices=PRIORITY_TYPE)
     classification = models.ForeignKey(
         "tasks.Classification", null=True, blank=True, on_delete=models.CASCADE
@@ -64,7 +66,9 @@ class Task(BaseModel):
     def __str__(self):
         return self.name
 
+
 auditlog.register(Task)
+
 
 class TaskImages(BaseModel):
     image = models.ImageField(upload_to=upload_task, null=True, blank=True)
@@ -75,6 +79,7 @@ class TaskImages(BaseModel):
         blank=True,
         related_name="task_images",
     )
+
 
 class TaskComments(BaseModel):
     task = models.ForeignKey(
