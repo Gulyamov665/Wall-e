@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'classification_name', headerName: 'Classification', width: 200 },
-  { field: 'name', headerName: 'name', width: 130 },
+  { field: 'name', headerName: 'name', width: 230 },
 
   {
     field: 'created_at',
@@ -48,6 +48,7 @@ export default function DataTable({ tasks = [] }) {
         pageSizeOptions={[13, 20, 30]}
         sortModel={sortModel}
         onSortModelChange={(model) => setSortModel(model)}
+        style={{ backgroundColor: 'black', color: 'white' }}
       />
     </div>
   )
