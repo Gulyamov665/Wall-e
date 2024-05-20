@@ -8,7 +8,7 @@ function Header() {
 
   const centerContent = (
     <div className="flex flex-wrap align-items-center gap-3">
-      <Link to={'/'}>
+      <Link to={'/main'}>
         <button className="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
           <i className="pi pi-home text-2xl"></i>
         </button>
@@ -35,14 +35,12 @@ function Header() {
   )
 
   return (
-    // <div className="">
     <Toolbar
       start={startContent}
       center={centerContent}
       end={endContent}
       className="custom"
     />
-    // </div>
   )
 }
 
