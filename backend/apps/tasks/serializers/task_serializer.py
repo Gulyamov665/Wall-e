@@ -20,6 +20,8 @@ class TaskImagesSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    updated_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
     task_images = TaskImagesSerializer(many=True, read_only=True, allow_null=True)
     uploaded_images = serializers.ListField(
         child=serializers.FileField(allow_empty_file=True, use_url=True),
@@ -36,6 +38,8 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             "id",
+            "created_by",
+            "updated_by",
             "created_at",
             "name",
             "start_time",
