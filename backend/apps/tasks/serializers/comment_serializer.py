@@ -14,9 +14,9 @@ class CommentImagesSerializer(serializers.ModelSerializer):
 
 
 class TaskCommentsSerializer(serializers.ModelSerializer ):
-    created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    updated_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    creator = serializers.SerializerMethodField()
+    # created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # updated_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # creator = serializers.SerializerMethodField()
     comment_image = CommentImagesSerializer(read_only=True, many=True, allow_null=True)
     uploaded_images = serializers.ListField(
         child=serializers.FileField(allow_empty_file=True, use_url=True),
@@ -26,7 +26,7 @@ class TaskCommentsSerializer(serializers.ModelSerializer ):
 
     class Meta:
         model = TaskComments
-        fields = ["id",  "created_by", "updated_by", "creator", "task", "comment", "comment_image", "uploaded_images"]
+        fields = ["id", "task", "comment", "comment_image", "uploaded_images"]
 
     def create(self, validated_data):
         uploaded_images = validated_data.pop("uploaded_images", None)

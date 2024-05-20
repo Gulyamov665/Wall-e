@@ -5,8 +5,8 @@ from rest_framework.response import Response
 
 
 class TaskImagesSerializer(serializers.ModelSerializer):
-    created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    updated_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # updated_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
     uploaded_images = serializers.ListField(
         child=serializers.FileField(allow_empty_file=True, use_url=True),
         write_only=True,
@@ -20,7 +20,7 @@ class TaskImagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskImages
-        fields = ["id", "task", "uploaded_images", "images", "created_by", "updated_by",]
+        fields = ["id", "task", "uploaded_images", "images",]
         read_only_fields = ["image", "images"]
 
     def create(self, validated_data):
