@@ -3,19 +3,35 @@
   float: left;
   height: 100vh;
   width: 20%;
-  background-color: #242424;
+  /* background-color: #242424; */
+  background-color: black;
   text-align: center;
 
   .sidebar_link {
     text-decoration: none;
   }
 
-  p {
-    margin-top: 10px;
+  .menuName {
+    width: 90%;
+    margin: 20px auto;
     padding: 1px;
     cursor: pointer;
     user-select: none;
     text-decoration: none;
     color: white;
+    border: 1px solid #646cff;
+    border-radius: 10px;
+    padding: 2%;
+    transition: border 0.5s;
+  }
+
+  .menuName:hover {
+    border-color: aqua;
+  }
+
+  .menuIcons {
+    width: auto;
+    border: 1px solid #646cff;
+    border-radius: 10px;
   }
 }

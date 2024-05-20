@@ -10,6 +10,7 @@ import {
   useAddCommentsMutation,
   useGetCommentsQuery,
 } from '../../store/request/commentsApi'
+import styles from '../assets/static/TaskDetail.module.css'
 import Gallery from '../components/Gallery'
 
 function TaskDetail() {
@@ -37,11 +38,7 @@ function TaskDetail() {
   }
 
   return (
-    <Main className="text-start">
-      <div></div>
-      <button className="btn " onClick={() => navigate(-1)}>
-        Back
-      </button>
+    <Main>
       <SettingsBar>
         <p>
           Начало:{' '}
@@ -52,26 +49,31 @@ function TaskDetail() {
           {data.dead_line && format(new Date(data.dead_line), 'dd.MM.yy')}
         </p>
       </SettingsBar>
-      <p>Название : {data.name}</p>
+      <div className={styles.containerTaskDetail}>
+        <button className="btn " onClick={() => navigate(-1)}>
+          Back
+        </button>
 
-      {data.task_images?.map((image) => (
-        <img
-          width={200}
-          height={200}
-          key={image.id}
-          src={image.image}
-          alt={image.image}
-        />
-      ))}
+        <p>Название : {data.name}</p>
 
-      <p>Комментарий : {data.comments}</p>
-      <div>
-        {commentsData &&
-          commentsData?.map((comment) => (
-            <div key={comment.id}>
-              <p>{comment.comment}</p>
+        {data.task_images?.map((image) => (
+          <img
+            width={200}
+            height={200}
+            key={image.id}
+            src={image.image}
+            alt={image.image}
+          />
+        ))}
 
-              {/* {comment.comment_image.map((image) => (
+        <p>Комментарий : {data.comments}</p>
+        <div>
+          {commentsData &&
+            commentsData?.map((comment) => (
+              <div key={comment.id}>
+                <p>{comment.comment}</p>
+
+                {/* {comment.comment_image.map((image) => (
                 <img
                   key={image.id}
                   width={200}
@@ -80,16 +82,17 @@ function TaskDetail() {
                   alt={image.task}
                 />
             ))} */}
-              <Gallery data={comment.comment_image} />
-            </div>
-          ))}
-      </div>
+                <Gallery data={comment.comment_image} />
+              </div>
+            ))}
+        </div>
 
-      <TaskDetailForm
-        register={register}
-        handleSubmit={handleSubmit}
-        addComments={addComments}
-      />
+        <TaskDetailForm
+          register={register}
+          handleSubmit={handleSubmit}
+          addComments={addComments}
+        />
+      </div>
     </Main>
   )
 }
