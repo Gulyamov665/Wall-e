@@ -70,18 +70,10 @@ function TaskDetail() {
         <div>
           {commentsData &&
             commentsData?.map((comment) => (
+
               <div key={comment.id}>
                 <p>{comment.comment}</p>
 
-                {/* {comment.comment_image.map((image) => (
-                <img
-                  key={image.id}
-                  width={200}
-                  height={200}
-                  src={image.image}
-                  alt={image.task}
-                />
-            ))} */}
                 <Gallery data={comment.comment_image} />
               </div>
             ))}
