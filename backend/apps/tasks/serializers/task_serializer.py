@@ -64,6 +64,7 @@ class TaskSerializer(serializers.ModelSerializer):
         return task
 
 
+
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         comment = TaskComments.objects.filter(task_id=instance.id)
@@ -75,6 +76,10 @@ class TaskSerializer(serializers.ModelSerializer):
 
     def get_executor_profile(self, instance):
         if instance.executor and hasattr(instance.executor, 'profile'):
+            request = self.context.get('request', None)
+            if request:
+                context = {'request': request}
+                return UserProfileSerializer(instance.executor.profile, context=context).data
             return UserProfileSerializer(instance.executor.profile).data
         return None
     
@@ -84,7 +89,11 @@ class TaskSerializer(serializers.ModelSerializer):
         observers_profile = []
         for observer in observers:
             if observer and hasattr(observer, 'profile'):
-                observers_profile.append(UserProfileSerializer(observer.profile).data)
+                request = self.context.get('request', None)
+                if request:
+                    context = {'request': request}
+                    return observers_profile.append(UserProfileSerializer(observer.profile, context=context).data)
+                return observers_profile.append(UserProfileSerializer(observer.profile).data)
             else:
-                return None
+                return observers_profile.append(UserProfileSerializer(observer.profile).data)
         return observers_profile

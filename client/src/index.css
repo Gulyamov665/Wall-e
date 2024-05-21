@@ -103,8 +103,7 @@ h1 {
     background-color: #f9f9f9;
   }
 }
-
-/* 
-.container-form{
-  width: 50px;
-} */
+.base-MenuButton-root {
+  background-color: transparent !important;
+  padding: 5px !important;
+}

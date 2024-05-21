@@ -13,9 +13,9 @@ import { ClassificationPage } from './apps/pages/ClassificationPage'
 import { Tasks } from './apps/pages/Tasks'
 import { TaskDetail } from './apps/pages/TaskDetail'
 import { Login } from './apps/pages/Login'
+import ChangeTaskPage from './apps/pages/ChangeTaskPage'
 
 function App() {
-
   return (
     <BrowserRouter>
       <Provider store={store}>
@@ -28,6 +28,7 @@ function App() {
             <Route path="/classification" element={<ClassificationPage />} />
             <Route path="/tasks" element={<Tasks />} />
             <Route path="task/:id" element={<TaskDetail />} />
+            <Route path="task-change/:id" element={<ChangeTaskPage />} />
           </Routes>
         </PrimeReactProvider>
       </Provider>

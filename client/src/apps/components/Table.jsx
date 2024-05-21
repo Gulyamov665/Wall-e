@@ -31,7 +31,6 @@ const columns = [
 ]
 
 export default function DataTable({ tasks = [] }) {
-  console.log(tasks)
   const [sortModel, setSortModel] = React.useState([
     { field: 'createdAt', sort: 'desc' },
   ])
@@ -42,13 +41,13 @@ export default function DataTable({ tasks = [] }) {
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 13 },
+            paginationModel: { page: 20, pageSize: 13 },
           },
         }}
         pageSizeOptions={[13, 20, 30]}
         sortModel={sortModel}
         onSortModelChange={(model) => setSortModel(model)}
-        style={{ backgroundColor: 'black', color: 'white' }}
+        // style={{ backgroundColor: 'black', color: 'white' }}
       />
     </div>
   )
