@@ -1,0 +1,59 @@
+.main {
+  position: relative;
+  background: url('../img/wp.jpeg');
+  background-size: cover;
+  height: 100dvh;
+  text-align: center;
+  margin: auto;
+}
+.parent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #26295d;
+  border-radius: 15px;
+}
+
+.inputContainer {
+  position: relative;
+  width: 70%;
+  /* width: 400px; */
+}
+
+.input {
+  width: 100%;
+  padding: 10px 40px;
+  border-radius: 10px;
+  border: 1px solid blueviolet;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 100px;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  border-color: #646cff;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  background-color: blueviolet;
+  border-color: blueviolet;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

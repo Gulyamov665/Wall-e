@@ -12,15 +12,17 @@ import CreateTask from './apps/pages/CreateTask'
 import { ClassificationPage } from './apps/pages/ClassificationPage'
 import { Tasks } from './apps/pages/Tasks'
 import { TaskDetail } from './apps/pages/TaskDetail'
-
+import { Login } from './apps/pages/Login'
 
 function App() {
+
   return (
     <BrowserRouter>
       <Provider store={store}>
         <PrimeReactProvider>
           <Routes>
-            <Route path="/" element={<Main />} exact />
+            <Route path="/" element={<Login />} />
+            <Route path="/main" element={<Main />} exact />
             <Route path="/content" element={<ContentPage />} />
             <Route path="/create-task" element={<CreateTask />} />
             <Route path="/classification" element={<ClassificationPage />} />
