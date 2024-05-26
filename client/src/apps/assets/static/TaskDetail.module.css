@@ -1,6 +1,97 @@
 .containerTaskDetail {
   margin: 0 auto;
   width: 60%;
-  border: 1px solid #646cff;
+  border: 1px solid blueviolet;
   border-radius: 10px;
+}
+
+.task-detail-info {
+  margin: 10px;
+  background-color: #fb9c00;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  text-align: start;
+}
+
+.intro-comment {
+  color: #1f2f34;
+}
+
+.card {
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  border: 1px solid #26295d;
+  text-align: start;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  background-color: #8bc34a;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.user-info h3 {
+  text-align: start;
+  margin: 0;
+  font-size: 16px;
+}
+
+.user-info p {
+  margin: 0;
+  color: #888;
+  font-size: 14px;
+}
+
+.card-content p {
+  margin: 10px 0;
+}
+
+.edited {
+  font-size: 12px;
+  color: #888;
+}
+
+.btn {
+  width: 100px;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  border-color: chocolate !important;
+  margin: 15px 10px 0;
+}
+
+.btn-delete {
+  width: 100px;
+  background-color: red;
+  padding: 10px;
+  border-radius: 10px;
+  border-color: red;
+  margin: 15px 10px 0;
+}
+.btn-change {
+  width: 100px;
+  padding: 10px !important;
+  margin: 0px 5px 0 0;
+}
+
+.btn:hover {
+  background-color: blueviolet;
+  border-color: blueviolet;
 }

@@ -8,7 +8,7 @@ export const usersApi = createApi({
 
     endpoints: build => ({
         getUsers: build.query({
-            query: () => 'user-profile/',
+            query: (id) => id ? `user-profile/${id}/` : 'user-profile/',
             providesTags: ['users']
         }),
 

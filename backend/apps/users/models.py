@@ -1,9 +1,18 @@
+import random
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.validators import validate_email
 from django.conf import settings
 from users.utils.directory_path import upload_path_user_avatar
 from users.utils.phone_validator import UZB_PHONE_VALIDATOR
+
+DEFAULTS=[
+    "default_photos/1.jpg",
+    "default_photos/2.png",
+    "default_photos/3.png",
+    "default_photos/4.jpeg",
+    "default_photos/5.jpg",
+]
 
 
 
@@ -55,7 +64,12 @@ class UserProfile(models.Model):
     user = models.OneToOneField(UserModel, related_name="profile", on_delete=models.CASCADE, primary_key=True,)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    avatar = models.ImageField(upload_to=upload_path_user_avatar)
+    avatar = models.ImageField(upload_to=upload_path_user_avatar, null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    def save(self, *args, **kwargs):
+        if not self.avatar:
+            self.avatar = random.choice(DEFAULTS)
+        return super().save(*args, **kwargs)

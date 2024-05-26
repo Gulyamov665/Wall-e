@@ -38,8 +38,8 @@ export default function SideBar() {
             )}
           </Link>
         ))}
-        <button onClick={() => setMenuIcons(!menuIcons)}>menu</button>
       </aside>
     </div>
+    
   )
 }

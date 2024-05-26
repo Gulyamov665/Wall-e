@@ -7,6 +7,8 @@ import styles from '../assets/static/Task.module.css'
 
 function Tasks() {
   const { data: tasks = [] } = useGetTasksQuery()
+  console.log(tasks)
+
   return (
     <Main>
       <SettingsBar>Hello</SettingsBar>

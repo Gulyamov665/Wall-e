@@ -1,8 +1,6 @@
 import React from 'react'
 
 export default function CreateTaskForm({
-  statuses,
-  users,
   handleLoad,
   register,
   handleSubmit,
@@ -24,7 +22,7 @@ export default function CreateTaskForm({
 
         <div className="mb-4">
           <textarea
-          placeholder='Комментарий'
+            placeholder="Комментарий"
             className="form-control"
             {...register('comments')}
           ></textarea>

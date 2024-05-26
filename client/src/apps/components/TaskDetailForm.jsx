@@ -2,9 +2,9 @@ import React from 'react'
 
 function TaskDetailForm({ register, handleSubmit, addComments }) {
   return (
-    <div className="container container-form w-50">
+    <div className="container w-50">
       <form onSubmit={handleSubmit(addComments)}>
-        <input
+        <textarea
           className="form-control"
           type="text"
           {...register('comment')}
@@ -17,7 +17,7 @@ function TaskDetailForm({ register, handleSubmit, addComments }) {
           accept="image/png, image/jpg"
           {...register('uploaded_images')}
         />
-        <button className="btn">Отправить</button>
+        <button className="btn btn-warning m-5">Отправить</button>
       </form>
     </div>
   )

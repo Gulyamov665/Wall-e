@@ -9,6 +9,7 @@ import { useGetUsersQuery } from '../../store/request/usersApi'
 import { useForm } from 'react-hook-form'
 import SettingsBar from '../layouts/SettingsBar'
 import { TaskExtraOptions } from '../components/TaskExtraOptions'
+import { addFormData } from '../utils/formData'
 
 export default function CreateTask() {
   const { data: statuses } = useGetTasksStatusQuery()
@@ -17,15 +18,7 @@ export default function CreateTask() {
   const { register, handleSubmit, reset } = useForm()
 
   const handleLoad = async (data) => {
-    let formData = new FormData()
-
-    Object.entries(data).forEach(([key, value]) => {
-      if (key === 'uploaded_images' || key === 'observers') {
-        ;[...value].forEach((item) => formData.append(key, item))
-        return
-      }
-      formData.append(key, value)
-    })
+    const formData = addFormData(data)
 
     await addTask(formData)
     reset()

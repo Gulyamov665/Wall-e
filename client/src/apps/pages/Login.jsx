@@ -9,7 +9,7 @@ import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined'
 
 function Login() {
   const { register, handleSubmit } = useForm()
-  const [token, { data: tokenData, isSuccess }] = useTokenMutation()
+  const [token, { isLoading }] = useTokenMutation()
   const [auth, setAuth] = useLocalStorage('', 'auth')
   const navigate = useNavigate()
 
@@ -55,9 +55,18 @@ function Login() {
               <VpnKeyOutlinedIcon />
             </i>
           </div>
-          <button className={styles.btn} type="submit">
-            Войти
-          </button>
+          {isLoading ? (
+            <button className={styles.btn} type="submit">
+              <span
+                className="spinner-border spinner-border-sm"
+                aria-hidden="true"
+              ></span>
+            </button>
+          ) : (
+            <button className={styles.btn} type="submit">
+              Войти
+            </button>
+          )}
         </div>
       </form>
     </div>
