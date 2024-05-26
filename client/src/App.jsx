@@ -14,6 +14,7 @@ import { Tasks } from './apps/pages/Tasks'
 import { TaskDetail } from './apps/pages/TaskDetail'
 import { Login } from './apps/pages/Login'
 import ChangeTaskPage from './apps/pages/ChangeTaskPage'
+import { TableV2 } from './apps/components/Table.v2'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/tasks" element={<Tasks />} />
             <Route path="task/:id" element={<TaskDetail />} />
             <Route path="task-change/:id" element={<ChangeTaskPage />} />
+            <Route path="table" element={<TableV2 />} />
           </Routes>
         </PrimeReactProvider>
       </Provider>

@@ -47,7 +47,6 @@ export default function DataTable({ tasks = [] }) {
         pageSizeOptions={[13, 20, 30]}
         sortModel={sortModel}
         onSortModelChange={(model) => setSortModel(model)}
-        // style={{ backgroundColor: 'black', color: 'white' }}
       />
     </div>
   )

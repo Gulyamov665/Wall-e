@@ -5,12 +5,21 @@ from tasks.serializers.comment_serializer import TaskCommentsSerializer
 from users.serializers.user_profile import UserProfileSerializer
 from tasks.models import Task, TaskImages, TaskComments
 from tasks.utils.images_create import images_create
+from tasks.utils.task_tg_text import taks_create_text
+from bot.test import run_async_task, send_messages_to_users
+
+user_id = 24055436
+users_id = [
+    24055436,
+    5092708098,
+    -974972939,
+]
 
 
 class LogEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = LogEntry
-        fields = ["id", "object_id", "timestamp","changes"]
+        fields = ["id", "object_id", "timestamp", "changes"]
 
 
 class TaskImagesSerializer(serializers.ModelSerializer):
@@ -29,8 +38,6 @@ class TaskSerializer(serializers.ModelSerializer):
     executor_profile = serializers.SerializerMethodField()
     observers_profile = serializers.SerializerMethodField()
     classification_name = serializers.SerializerMethodField()
-
-
 
     class Meta:
         model = Task
@@ -53,7 +60,6 @@ class TaskSerializer(serializers.ModelSerializer):
             "observers_profile",
         ]
 
-
     def create(self, validated_data):
         uploaded_images = validated_data.pop("uploaded_images", None)
         observers = validated_data.pop("observers")
@@ -61,39 +67,47 @@ class TaskSerializer(serializers.ModelSerializer):
         images_create(uploaded_images, task, TaskImages)
         if observers:
             task.observers.set(observers)
+        run_async_task(
+            send_messages_to_users(users_id, taks_create_text(validated_data))
+        )
         return task
-
-
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         comment = TaskComments.objects.filter(task_id=instance.id)
         representation["task_comment"] = TaskCommentsSerializer(comment, many=True).data
         return representation
-    
+
     def get_classification_name(self, obj):
         return obj.classification.name if obj.classification else None
 
     def get_executor_profile(self, instance):
-        if instance.executor and hasattr(instance.executor, 'profile'):
-            request = self.context.get('request', None)
+        if instance.executor and hasattr(instance.executor, "profile"):
+            request = self.context.get("request", None)
             if request:
-                context = {'request': request}
-                return UserProfileSerializer(instance.executor.profile, context=context).data
+                context = {"request": request}
+                return UserProfileSerializer(
+                    instance.executor.profile, context=context
+                ).data
             return UserProfileSerializer(instance.executor.profile).data
         return None
-    
-    
+
     def get_observers_profile(self, instance):
         observers = instance.observers.all()
         observers_profile = []
         for observer in observers:
-            if observer and hasattr(observer, 'profile'):
-                request = self.context.get('request', None)
+            if observer and hasattr(observer, "profile"):
+                request = self.context.get("request", None)
                 if request:
-                    context = {'request': request}
-                    return observers_profile.append(UserProfileSerializer(observer.profile, context=context).data)
-                return observers_profile.append(UserProfileSerializer(observer.profile).data)
+                    context = {"request": request}
+                    return observers_profile.append(
+                        UserProfileSerializer(observer.profile, context=context).data
+                    )
+                return observers_profile.append(
+                    UserProfileSerializer(observer.profile).data
+                )
             else:
-                return observers_profile.append(UserProfileSerializer(observer.profile).data)
+                return observers_profile.append(
+                    UserProfileSerializer(observer.profile).data
+                )
         return observers_profile

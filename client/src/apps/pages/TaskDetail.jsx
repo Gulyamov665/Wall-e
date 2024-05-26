@@ -20,7 +20,7 @@ import QuiltedImageList from '../components/ImageList'
 
 function TaskDetail() {
   const params = useParams()
-  const { data = [] } = useGetTasksQuery(params.id)
+  const { data = [] } = useGetTasksQuery({ id: params.id })
   const [addComment] = useAddCommentsMutation()
   const { data: commentsData } = useGetCommentsQuery(params.id)
   const [deleteTask] = useDeleteTaskMutation()
@@ -86,7 +86,7 @@ function TaskDetail() {
           <h3 className={styles['intro-comment']}>{data.comments}</h3>
 
           <div className="d-flex align-items-center">
-            <QuiltedImageList data={data?.task_images} /> {console.log(data)}
+            <QuiltedImageList data={data?.task_images} />
             <div style={{ margin: '0 auto', textAlign: 'center' }}>
               <img
                 style={{ borderRadius: 50 }}
@@ -95,7 +95,13 @@ function TaskDetail() {
                 src={data.executor_profile?.avatar}
                 alt=""
               />
-              <div style={{ backgroundColor: 'black', padding: '10% 20%', borderRadius: 20 }}>
+              <div
+                style={{
+                  backgroundColor: 'black',
+                  padding: '10% 20%',
+                  borderRadius: 20,
+                }}
+              >
                 <p>
                   <b style={{ color: 'white' }}>
                     {data.executor_profile?.first_name}

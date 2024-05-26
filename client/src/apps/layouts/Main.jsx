@@ -1,14 +1,13 @@
 import React from 'react'
 import SideBar from '../components/SideBar'
-import { useLazyGetFilteredTasksQuery } from '../../store/request/taskApi'
 import { Header } from '../components/Header'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { Navigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import { useGetUsersQuery } from '../../store/request/usersApi'
+import styles from '../assets/static/Main.module.css'
 
 export default function Main({ children }) {
-  const [getTasks, results] = useLazyGetFilteredTasksQuery()
   const [auth] = useLocalStorage('', 'auth')
   const userId = auth && jwtDecode(auth)['user_id']
   const { data: userData } = useGetUsersQuery(userId)
@@ -20,12 +19,10 @@ export default function Main({ children }) {
   return (
     <>
       <Header userData={userData} />
-      <div>
-        <SideBar />
-        <div className="layoutChildren">
-          {children}
-          <br />
-        </div>
+      <SideBar />
+      <div className={styles['Children']}>
+        {children}
+        <br />
       </div>
     </>
   )

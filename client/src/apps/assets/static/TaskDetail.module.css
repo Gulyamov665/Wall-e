@@ -7,12 +7,7 @@
 
 .task-detail-info {
   margin: 10px;
-  background-color: #FB9C00;
-  /* background-color: black; */
-
-  -webkit-box-shadow: 2px 10px 51px -7px rgba(148, 12, 148, 1);
-  -moz-box-shadow: 2px 10px 51px -7px rgba(148, 12, 148, 1);
-  box-shadow: 2px 10px 51px -7px rgba(148, 12, 148, 1);
+  background-color: #fb9c00;
   border-radius: 10px;
   padding: 10px;
   color: white;
