@@ -4,8 +4,8 @@ from aiogram.enums import ParseMode
 from aiogram.filters import Command
 import asyncio
 import logging
+from bot.config import TOKEN
 
-TOKEN = "5874502479:AAEdsmXfAwkRQLfYLnAJkKKqnR_gQ38okII"
 
 API_TOKEN = TOKEN
 API_URL = "http://127.0.0.1:8000/api/v1/tasks/"

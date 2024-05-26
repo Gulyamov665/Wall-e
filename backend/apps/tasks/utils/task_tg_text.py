@@ -20,3 +20,4 @@ def taks_create_text(data):
 🚨 Приоритет : {data.priority}
 ★ Статус : {data.status}
     """
+

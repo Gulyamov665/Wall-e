@@ -20,7 +20,7 @@ import QuiltedImageList from '../components/ImageList'
 
 function TaskDetail() {
   const params = useParams()
-  const { data = [] } = useGetTasksQuery({ id: params.id })
+  const { data = [] } = useGetTasksQuery(params.id)
   const [addComment] = useAddCommentsMutation()
   const { data: commentsData } = useGetCommentsQuery(params.id)
   const [deleteTask] = useDeleteTaskMutation()
