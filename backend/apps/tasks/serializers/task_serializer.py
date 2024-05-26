@@ -71,9 +71,9 @@ class TaskSerializer(serializers.ModelSerializer):
         images_create(uploaded_images, task, TaskImages)
         if observers:
             task.observers.set(observers)
-        run_async_task(
-            send_messages_to_users(users_id, taks_create_text(validated_data))
-        )
+        # run_async_task(
+        #     send_messages_to_users(users_id, taks_create_text(validated_data))
+        # )
         return task
 
     def to_representation(self, instance):
