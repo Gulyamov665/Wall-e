@@ -31,9 +31,23 @@ PRIORITY_TYPE = (
 )
 
 
+class Organization(BaseModel):
+    name = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return f"{self.name}"
+
+
 class Classification(BaseModel):
     name = models.CharField(max_length=255, unique=True)
     availability = models.BooleanField(default=True)
+    organization = models.ForeignKey(
+        "tasks.Organization",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="classification",
+    )
 
     def __str__(self):
         return self.name
@@ -61,6 +75,13 @@ class Task(BaseModel):
     priority = models.CharField(max_length=255, default=AVERAGE, choices=PRIORITY_TYPE)
     classification = models.ForeignKey(
         "tasks.Classification", null=True, blank=True, on_delete=models.CASCADE
+    )
+    organization = models.ForeignKey(
+        "tasks.Organization",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="task_organization",
     )
 
     def __str__(self):
@@ -92,7 +113,7 @@ class TaskComments(BaseModel):
     comment = models.TextField(null=True, blank=True)
 
     # def __str__(self):
-        # return f"{self.task.name} | {self.comment}"
+    # return f"{self.task.name} | {self.comment}"
 
 
 class CommentImages(BaseModel):
