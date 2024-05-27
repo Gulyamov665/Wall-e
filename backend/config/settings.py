@@ -53,6 +53,7 @@ CORS_ALLOW_HEADERS = [
     "content-type",
 ]
 
+BOT_TOKEN = "5874502479:AAEdsmXfAwkRQLfYLnAJkKKqnR_gQ38okII"
 
 PASSWORD_MIN_LENGHT = 8
 
@@ -82,6 +83,7 @@ INSTALLED_APPS = [
     "users",
     "tasks",
     "core",
+    "bot",
 
 ]
 

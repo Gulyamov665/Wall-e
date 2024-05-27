@@ -15,6 +15,7 @@ import { TaskDetail } from './apps/pages/TaskDetail'
 import { Login } from './apps/pages/Login'
 import ChangeTaskPage from './apps/pages/ChangeTaskPage'
 import { TableV2 } from './apps/components/Table.v2'
+import { Pdf } from './apps/pages/Pdf'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="task/:id" element={<TaskDetail />} />
             <Route path="task-change/:id" element={<ChangeTaskPage />} />
             <Route path="table" element={<TableV2 />} />
+            <Route path="pdf-page/:id" element={<Pdf />} />
           </Routes>
         </PrimeReactProvider>
       </Provider>

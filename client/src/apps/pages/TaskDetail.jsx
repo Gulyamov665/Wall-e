@@ -65,6 +65,14 @@ function TaskDetail() {
             Back
           </button>
           <div>
+            <Link to={`/pdf-page/${params.id}`}>
+              <button
+                className={`${styles['btn-change']} btn btn-warning`}
+                onClick={() => {}}
+              >
+                PDF
+              </button>
+            </Link>
             <button className={styles['btn-delete']} onClick={handleDeleteTask}>
               Удалить
             </button>

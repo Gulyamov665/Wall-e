@@ -64,6 +64,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(UserModel, related_name="profile", on_delete=models.CASCADE, primary_key=True,)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    chat_id = models.IntegerField(null=True, blank=True)
     avatar = models.ImageField(upload_to=upload_path_user_avatar, null=True, blank=True)
 
     def __str__(self):
