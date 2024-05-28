@@ -80,6 +80,7 @@ class TaskSerializer(serializers.ModelSerializer):
     def get_classification_name(self, obj):
         return obj.classification.name if obj.classification else None
 
+
     def get_executor_profile(self, instance):
         if instance.executor and hasattr(instance.executor, "profile"):
             request = self.context.get("request", None)
@@ -90,6 +91,7 @@ class TaskSerializer(serializers.ModelSerializer):
                 ).data
             return UserProfileSerializer(instance.executor.profile).data
         return None
+
 
     def get_observers_profile(self, instance):
         observers = instance.observers.all()
@@ -102,7 +104,6 @@ class TaskSerializer(serializers.ModelSerializer):
                     UserProfileSerializer(observer.profile, context=context).data
                 )
             else:
-                return observers_profile.append(
-                    UserProfileSerializer(observer.profile).data
-                )
+                observers_profile.append(UserProfileSerializer(observer.profile).data)
         return observers_profile
+
