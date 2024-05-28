@@ -1,16 +1,8 @@
-def taks_create_text(data):
-    # name = data.get("name", None)
-    # classification_name = data.get("classification", None)
-    # comments = data.get("comments", "Коментов нет")
-    # created_at = data.get("start_time", None)
-    # priority = data.get("priority", None)
-    # status = data.get("status", None)
-    # executor = data.get("executor", None)
-    # dead_line = data.get("dead_line", None)
-
+def taks_create_text(data, task):
     return f"""  
-🟢 Новая Задача
+{task}
 
+🆔 Id : http://localhost:5173/task/{data.id}
 🎯 Название : {data.name}
 📅 Создан : {data.created_at}
 📅 Конец : {data.dead_line}
@@ -20,3 +12,22 @@ def taks_create_text(data):
 🚨 Приоритет : {data.priority}
 ★ Статус : {data.status}
     """
+
+
+def taks_update_text(data, task, changes=None):
+    return f"""  
+{task}
+
+🆔 Id : http://localhost:5173/task/{data.id}
+🎯 Название : изменилось от {changes['name']['old'] if changes['name']['old'] else data.name} на {changes['name']['new'] if changes['name']['new'] else data.name}
+📅 Создан : {data.created_at}
+📅 Конец : {data.dead_line}
+✉️ Классификация : {data.classification}
+🗒️ Комментарии : {data.comments}
+🤵‍♂️ Исполнитель : {data.executor}
+🚨 Приоритет : {data.priority}
+★ Статус : {data.status}
+    """
+
+# 📅 Создан : {data.created_at.strftime("%Y-%m-%d %H:%M:%S")}
+# 📅 Конец : {data.dead_line.strftime("%Y-%m-%d %H:%M:%S")}

@@ -6,7 +6,6 @@ from users.serializers.user_profile import UserProfileSerializer
 from tasks.models import Task, TaskImages, TaskComments
 from tasks.utils.images_create import images_create
 from tasks.utils.task_tg_text import taks_create_text
-from bot.test import run_async_task, send_messages_to_users
 
 user_id = 24055436
 users_id = [
@@ -71,9 +70,6 @@ class TaskSerializer(serializers.ModelSerializer):
         images_create(uploaded_images, task, TaskImages)
         if observers:
             task.observers.set(observers)
-        # run_async_task(
-        #     send_messages_to_users(users_id, taks_create_text(validated_data))
-        # )
         return task
 
     def to_representation(self, instance):
@@ -84,6 +80,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
     def get_classification_name(self, obj):
         return obj.classification.name if obj.classification else None
+
 
     def get_executor_profile(self, instance):
         if instance.executor and hasattr(instance.executor, "profile"):
@@ -96,22 +93,16 @@ class TaskSerializer(serializers.ModelSerializer):
             return UserProfileSerializer(instance.executor.profile).data
         return None
 
+
     def get_observers_profile(self, instance):
         observers = instance.observers.all()
         observers_profile = []
         for observer in observers:
             if observer and hasattr(observer, "profile"):
                 request = self.context.get("request", None)
-                if request:
-                    context = {"request": request}
-                    return observers_profile.append(
-                        UserProfileSerializer(observer.profile, context=context).data
-                    )
-                return observers_profile.append(
-                    UserProfileSerializer(observer.profile).data
-                )
+                context = {"request": request}
+                observers_profile.append(UserProfileSerializer(observer.profile, context=context).data)
             else:
-                return observers_profile.append(
-                    UserProfileSerializer(observer.profile).data
-                )
+                observers_profile.append(UserProfileSerializer(observer.profile).data)
         return observers_profile
+
