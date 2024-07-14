@@ -71,20 +71,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # external librarys
     "rest_framework",
     "rest_framework_simplejwt",
-    'django_filters',
-    'auditlog',
+    "django_filters",
+    "auditlog",
     "corsheaders",
-
     # internal apps
     "users",
     "tasks",
     "core",
-    "bot",
-
+    "checklist",
 ]
 
 MIDDLEWARE = [
@@ -153,15 +150,11 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-
     # 'DEFAULT_AUTHENTICATION_CLASSES': [
     #     'rest_framework.authentication.BasicAuthentication',
     #     'rest_framework.authentication.SessionAuthentication',
     # ],
-
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
-    ),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
 # JWT settings clear after testing
