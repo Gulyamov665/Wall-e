@@ -115,7 +115,7 @@ class TaskComments(BaseModel):
         related_name="task_comments",
     )
     comment = models.TextField(null=True, blank=True)
-    checklist = models.ManyToManyField("checklist.Product", through="checklist.Checklist")
+    checklist = models.ManyToManyField("checklist.Checklist", related_name="checklist")
 
     # def __str__(self):
     # return f"{self.task.name} | {self.comment}"

@@ -5,4 +5,4 @@ from checklist.models import Product
 class ProductSerializers(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ["name", "brand", "image"]
+        fields = ["id", "name", "brand", "image"]

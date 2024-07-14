@@ -19,9 +19,9 @@ class Product(BaseModel):
     
 
 
-class Checklist(BaseModel):
-    product = models.ForeignKey("checklist.Product", on_delete=models.CASCADE, null=True, blank=True)
-    task_id = models.ForeignKey("tasks.Task", on_delete=models.CASCADE, null=True, blank=True)
-    task_comment = models.ForeignKey("tasks.TaskComments", on_delete=models.CASCADE, null=True, blank=True)
+class Checklist(models.Model):
+    product = models.ForeignKey("checklist.Product", on_delete=models.CASCADE, null=True, blank=True, related_name="product")
+    task_id = models.ForeignKey("tasks.Task", on_delete=models.CASCADE, null=True, blank=True, related_name="task_id")
+    task_comment = models.ForeignKey("tasks.TaskComments", on_delete=models.CASCADE, null=True, blank=True, related_name="task_comment_id")
     is_checked = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True, editable=False)
