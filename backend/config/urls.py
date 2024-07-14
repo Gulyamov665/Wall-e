@@ -4,7 +4,6 @@ from apps.users.views import change_password
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
-    TokenVerifyView,
 )
 from apps.tasks.views.task import LogEntryView, get_status_and_priority
 from django.conf.urls.static import static
@@ -17,6 +16,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path("api/v1/", include([
         path("", include("tasks.urls")),
+        path("", include("checklist.urls")),
         path("", include("users.urls")),
         path('change-password', change_password.ChangePasswordView.as_view(), name="change-password"),
         path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
