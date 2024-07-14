@@ -84,6 +84,9 @@ class Task(BaseModel):
         related_name="task_organization",
     )
 
+    class Meta:
+        ordering = ["-created_at"]
+
     def __str__(self):
         return self.name
 
@@ -112,6 +115,7 @@ class TaskComments(BaseModel):
         related_name="task_comments",
     )
     comment = models.TextField(null=True, blank=True)
+    checklist = models.ManyToManyField("checklist.Product", through="checklist.Checklist")
 
     # def __str__(self):
     # return f"{self.task.name} | {self.comment}"

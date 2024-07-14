@@ -56,14 +56,14 @@ function Login() {
             </i>
           </div>
           {isLoading ? (
-            <button className={styles.btn} type="submit">
+            <button className={`${styles['btn']} btn`} type="submit">
               <span
                 className="spinner-border spinner-border-sm"
                 aria-hidden="true"
               ></span>
             </button>
           ) : (
-            <button className={styles.btn} type="submit">
+            <button className={`${styles['btn']} btn`} type="submit">
               Войти
             </button>
           )}

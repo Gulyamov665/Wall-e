@@ -15,7 +15,7 @@ import { TaskExtraOptions } from '../components/TaskExtraOptions'
 
 function ChangeTaskPage() {
   const params = useParams()
-  const { data: taskQuery } = useGetTasksQuery(params.id)
+  const { data: taskQuery } = useGetTasksQuery({ id: params.id })
   const [updateTask] = useUpdateTaskMutation()
   const { data: statuses } = useGetTasksStatusQuery()
   const { data: users } = useGetUsersQuery()
@@ -45,7 +45,9 @@ function ChangeTaskPage() {
           users={users}
         />
       </SettingsBar>
-      <button className="btn btn-warning" onClick={() => navigate(-1)}>Назад</button>
+      <button className="btn btn-warning" onClick={() => navigate(-1)}>
+        Назад
+      </button>
       <CreateTaskForm
         handleLoad={handleUpdateTask}
         handleSubmit={handleSubmit}

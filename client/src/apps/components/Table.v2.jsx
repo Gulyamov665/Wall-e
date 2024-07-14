@@ -1,21 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Main from '../layouts/Main'
 import SettingsBar from '../layouts/SettingsBar'
-import {
-  useGetTasksQuery,
-  useLazyGetTasksQuery,
-} from '../../store/request/taskApi'
+import { useLazyGetTasksQuery } from '../../store/request/taskApi'
 import { Link } from 'react-router-dom'
 
 function TableV2() {
   const [load, results] = useLazyGetTasksQuery()
-  const { data: tasks = [] } = useGetTasksQuery()
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    load()
-  }, [])
+    load({ count: page })
+  }, [page])
 
-  console.log(results)
+  const nextPage = () => {
+    if (page < results.data?.pages) {
+      setPage(page + 1)
+    }
+  }
+
+  const previousPage = () => {
+    if (page > 1) {
+      setPage(page - 1)
+    }
+  }
 
   return (
     <Main>
@@ -41,8 +48,11 @@ function TableV2() {
                 <td>{item.name}</td>
                 <td>{item.created_at}</td>
                 <td>
-                  <Link onClick={() => load({ page: 'page222' })}>
-                    Изменить
+                  <Link
+                    to={`/task/${item.id}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    Открыть
                   </Link>
                 </td>
               </tr>
@@ -51,29 +61,27 @@ function TableV2() {
         </table>
         <div className="d-flex justify-content-center">
           <nav aria-label="Page navigation ">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#">
+            <ul className="pagination">
+              <li
+                className="page-item"
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
+                <a className="page-link" onClick={previousPage}>
                   Previous
                 </a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
+              {/* {
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    {results.data?.pages}
+                  </a>
+                </li>
+              } */}
+              <li
+                className="page-item"
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
+                <a className="page-link" onClick={nextPage}>
                   Next
                 </a>
               </li>

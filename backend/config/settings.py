@@ -71,20 +71,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # external librarys
     "rest_framework",
     "rest_framework_simplejwt",
-    'django_filters',
-    'auditlog',
+    "django_filters",
+    "auditlog",
     "corsheaders",
-
     # internal apps
     "users",
     "tasks",
     "core",
-    "bot",
-
+    "checklist",
 ]
 
 MIDDLEWARE = [
