@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import password_validation
 from django.conf import settings
 from users.models import UserModel
+from users.utils.phone_validator import UZB_PHONE_VALIDATOR
 
 
 '''

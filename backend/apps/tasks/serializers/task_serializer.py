@@ -5,7 +5,7 @@ from tasks.serializers.comment_serializer import TaskCommentsSerializer
 from users.serializers.user_profile import UserProfileSerializer
 from tasks.models import Task, TaskImages, TaskComments
 from tasks.utils.images_create import images_create
-from tasks.utils.task_tg_text import taks_create_text
+
 
 user_id = 24055436
 users_id = [
@@ -16,6 +16,7 @@ users_id = [
 
 
 class LogEntrySerializer(serializers.ModelSerializer):
+
     class Meta:
         model = LogEntry
         fields = ["id", "object_id", "timestamp", "changes"]

@@ -78,3 +78,5 @@ class UserView(viewsets.ModelViewSet):
     #     allowed_methods = super().get_allowed_methods()
     #     allowed_methods.append("PATCH")
     #     return allowed_methods
+
+

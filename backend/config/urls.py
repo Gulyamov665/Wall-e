@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from apps.users.views import change_password
+from apps.users.views import change_password, reset_password
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -19,13 +19,14 @@ urlpatterns = [
         path("", include("tasks.urls")),
         path("", include("users.urls")),
         path('change-password', change_password.ChangePasswordView.as_view(), name="change-password"),
+        path('reset-password', reset_password.SendCodeView.as_view(), name="send-code"),
         path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
         path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
         path("status/", get_status_and_priority, name="status-list"),
     ])),
 
     path("api/log/", LogEntryView.as_view({"get":"list"}), name="log-list"),
-    path("api/log/<int:object_id>", LogEntryView.as_view({"get":"with_object_id"}), name="log-object-list"),
+    path("api/log/<int:object_id>", LogEntryView.as_view({"get":"list"}), name="log-list"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

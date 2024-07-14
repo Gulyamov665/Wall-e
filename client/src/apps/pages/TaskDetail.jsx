@@ -20,7 +20,7 @@ import QuiltedImageList from '../components/ImageList'
 
 function TaskDetail() {
   const params = useParams()
-  const { data = [] } = useGetTasksQuery({ id: params.id })
+  const { data = [] } = useGetTasksQuery(params.id)
   const [addComment] = useAddCommentsMutation()
   const { data: commentsData } = useGetCommentsQuery(params.id)
   const [deleteTask] = useDeleteTaskMutation()
@@ -65,6 +65,14 @@ function TaskDetail() {
             Back
           </button>
           <div>
+            <Link to={`/pdf-page/${params.id}`}>
+              <button
+                className={`${styles['btn-change']} btn btn-warning`}
+                onClick={() => {}}
+              >
+                PDF
+              </button>
+            </Link>
             <button className={styles['btn-delete']} onClick={handleDeleteTask}>
               Удалить
             </button>

@@ -101,6 +101,7 @@ class TaskImages(BaseModel):
         related_name="task_images",
     )
 
+auditlog.register(TaskImages)
 
 class TaskComments(BaseModel):
     task = models.ForeignKey(
@@ -115,6 +116,7 @@ class TaskComments(BaseModel):
     # def __str__(self):
     # return f"{self.task.name} | {self.comment}"
 
+auditlog.register(TaskComments)
 
 class CommentImages(BaseModel):
     task = models.ForeignKey(
@@ -125,3 +127,5 @@ class CommentImages(BaseModel):
         related_name="comment_image",
     )
     image = models.FileField(upload_to="comment_photo/", null=True, blank=True)
+
+auditlog.register(CommentImages)

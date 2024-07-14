@@ -10,17 +10,21 @@ import { useForm } from 'react-hook-form'
 import SettingsBar from '../layouts/SettingsBar'
 import { TaskExtraOptions } from '../components/TaskExtraOptions'
 import { addFormData } from '../utils/formData'
+import { useSendMessageMutation } from '../../store/request/notificationApi'
 
 export default function CreateTask() {
   const { data: statuses } = useGetTasksStatusQuery()
   const { data: users } = useGetUsersQuery()
-  const [addTask] = useAddTaskMutation()
+  const [addTask, { data: addedTask }] = useAddTaskMutation()
+  const [sendNotification] = useSendMessageMutation()
   const { register, handleSubmit, reset } = useForm()
 
   const handleLoad = async (data) => {
     const formData = addFormData(data)
 
     await addTask(formData)
+      .then((res) => sendNotification(res.data))
+      .catch((err) => console.log(err))
     reset()
     reset({
       start_time: '',
@@ -31,6 +35,7 @@ export default function CreateTask() {
       priority: '',
     })
   }
+
   return (
     <Main>
       <SettingsBar>

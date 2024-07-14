@@ -17,3 +17,8 @@ class ChangePasswordView(UpdateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": f"Пароль для юзера {user.id} успешно изменён"})
+    
+
+
+    
+

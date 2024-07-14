@@ -7,11 +7,11 @@ from users.utils.directory_path import upload_path_user_avatar
 from users.utils.phone_validator import UZB_PHONE_VALIDATOR
 
 DEFAULTS=[
-    "default_photos/1.jpg",
-    "default_photos/2.png",
-    "default_photos/3.png",
-    "default_photos/4.jpeg",
-    "default_photos/5.jpg",
+    "media/default_photos/1.jpg",
+    "media/default_photos/2.png",
+    "media/default_photos/3.png",
+    "media/default_photos/4.jpeg",
+    "media/default_photos/5.jpg",
 ]
 
 
@@ -51,6 +51,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     is_manager = models.BooleanField(default=False)
     is_supervisor = models.BooleanField(default=False)
     user_registered_at = models.DateTimeField(auto_now_add=True)
+    chat_id = models.IntegerField(null=True, blank=True)
 
     USERNAME_FIELD = "email"
     objects = UserManager()
@@ -64,6 +65,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(UserModel, related_name="profile", on_delete=models.CASCADE, primary_key=True,)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    chat_id = models.IntegerField(null=True, blank=True)
     avatar = models.ImageField(upload_to=upload_path_user_avatar, null=True, blank=True)
 
     def __str__(self):
