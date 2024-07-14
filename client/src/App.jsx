@@ -16,6 +16,7 @@ import { Login } from './apps/pages/Login'
 import ChangeTaskPage from './apps/pages/ChangeTaskPage'
 import { TableV2 } from './apps/components/Table.v2'
 import { Pdf } from './apps/pages/Pdf'
+import Pptx from './apps/components/Pptx'
 
 function App() {
   return (
@@ -28,11 +29,11 @@ function App() {
             <Route path="/content" element={<ContentPage />} />
             <Route path="/create-task" element={<CreateTask />} />
             <Route path="/classification" element={<ClassificationPage />} />
-            <Route path="/tasks" element={<Tasks />} />
+            <Route path="/tasks" element={<TableV2 />} />
             <Route path="task/:id" element={<TaskDetail />} />
             <Route path="task-change/:id" element={<ChangeTaskPage />} />
-            <Route path="table" element={<TableV2 />} />
             <Route path="pdf-page/:id" element={<Pdf />} />
+            <Route path="pptx-page/" element={<Pptx text={'hello'} />} />
           </Routes>
         </PrimeReactProvider>
       </Provider>

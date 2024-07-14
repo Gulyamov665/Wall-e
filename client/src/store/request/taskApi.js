@@ -10,7 +10,7 @@ export const tasksApi = createApi({
     endpoints: (build) => ({
 
         getTasks: build.query({
-            query: (id) => id ? `tasks/${id}/` : `tasks/`,
+            query: ({ id, count }) => id ? `tasks/${id}/` : `tasks/?page=${count}`,
             providesTags: ['Tasks']
         }),
 

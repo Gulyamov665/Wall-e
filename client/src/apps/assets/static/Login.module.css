@@ -43,16 +43,16 @@
 
 .btn {
   width: 100px;
-  background-color: transparent;
+  background-color: transparent !important;
   padding: 10px;
   border-radius: 10px;
-  border-color: #646cff;
+  border-color: #646cff !important;
   margin-top: 15px;
 }
 
 .btn:hover {
-  background-color: blueviolet;
-  border-color: blueviolet;
+  background-color: blueviolet !important;
+  border-color: blueviolet !important;
 }
 
 .icon {

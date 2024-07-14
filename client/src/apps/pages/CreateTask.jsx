@@ -15,7 +15,7 @@ import { useSendMessageMutation } from '../../store/request/notificationApi'
 export default function CreateTask() {
   const { data: statuses } = useGetTasksStatusQuery()
   const { data: users } = useGetUsersQuery()
-  const [addTask, { data: addedTask }] = useAddTaskMutation()
+  const [addTask] = useAddTaskMutation()
   const [sendNotification] = useSendMessageMutation()
   const { register, handleSubmit, reset } = useForm()
 
